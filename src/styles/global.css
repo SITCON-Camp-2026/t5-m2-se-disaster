@@ -158,6 +158,13 @@ button {
   background: #fbfcfe;
 }
 
+.workbench__intro-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .workbench__intro h2 {
   margin: 0 0 8px;
   font-size: 1.25rem;
@@ -165,6 +172,74 @@ button {
 
 .workbench__intro p:last-child {
   margin-bottom: 0;
+}
+
+.report-draft-button {
+  display: grid;
+  gap: 3px;
+  flex: 0 0 auto;
+  min-width: 172px;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  padding: 12px 16px;
+  background: #b42318;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  box-shadow:
+    0 0 0 3px rgb(180 35 24 / 18%),
+    0 12px 24px rgb(180 35 24 / 22%);
+}
+
+.report-draft-button span {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.report-draft-button small {
+  color: rgb(255 255 255 / 86%);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.report-draft-button:hover {
+  background: #9f1f17;
+}
+
+.report-draft-button:focus-visible {
+  outline: 3px solid #fdb022;
+  outline-offset: 3px;
+}
+
+.report-draft-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  border: 1px solid #cfd8e3;
+  border-radius: 8px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.report-draft-panel h3 {
+  margin: 0 0 4px;
+}
+
+.report-draft-panel label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.report-draft-panel select,
+.report-draft-panel textarea {
+  width: 100%;
+  border: 1px solid #cfd8e3;
+  border-radius: 8px;
+  padding: 10px;
+  color: #17202a;
+  font: inherit;
 }
 
 .workbench__layout {
@@ -251,6 +326,200 @@ button {
   line-height: 1.6;
 }
 
+.preparation-summary,
+.tool-summary {
+  margin-bottom: 18px;
+  border-bottom: 1px solid #dbe4ef;
+  padding-bottom: 16px;
+}
+
+.preparation-summary p,
+.tool-summary p,
+.tool-need-panel p {
+  color: #5f6b7a;
+  line-height: 1.6;
+}
+
+.preparation-summary li,
+.tool-summary li,
+.tool-need-panel li {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.preparation-summary strong,
+.tool-summary strong,
+.tool-need-panel strong {
+  color: #17202a;
+}
+
+.preparation-summary span,
+.tool-summary span,
+.tool-need-panel span {
+  color: #5f6b7a;
+}
+
+.preparation-summary small {
+  color: #6f4e00;
+  line-height: 1.5;
+}
+
+.tool-need-panel {
+  border: 1px solid #ffe2a8;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff9ee;
+}
+
+.mock-satellite-panel {
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fbfcfe;
+}
+
+.mock-satellite-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.mock-satellite-panel__header h3 {
+  margin: 0;
+}
+
+.mock-satellite-panel__header span {
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #17202a;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.mock-satellite-panel p {
+  margin-bottom: 0;
+  color: #5f6b7a;
+  line-height: 1.6;
+}
+
+.mock-satellite {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  border: 1px solid #aebdca;
+  border-radius: 8px;
+  background:
+    linear-gradient(
+      28deg,
+      transparent 47%,
+      rgb(255 255 255 / 22%) 48% 51%,
+      transparent 52%
+    ),
+    linear-gradient(
+      116deg,
+      transparent 42%,
+      rgb(75 91 69 / 35%) 43% 46%,
+      transparent 47%
+    ),
+    radial-gradient(circle at 28% 32%, rgb(91 121 74 / 48%), transparent 22%),
+    radial-gradient(circle at 72% 68%, rgb(117 137 92 / 48%), transparent 24%),
+    linear-gradient(135deg, #687c56, #9aa06a 42%, #6d8061 100%);
+}
+
+.mock-satellite::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image:
+    linear-gradient(rgb(255 255 255 / 12%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 12%) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.mock-satellite__river,
+.mock-satellite__road,
+.mock-satellite__district,
+.mock-satellite__marker {
+  position: absolute;
+}
+
+.mock-satellite__river {
+  left: -8%;
+  top: 38%;
+  width: 116%;
+  height: 54px;
+  transform: rotate(-13deg);
+  border-radius: 999px;
+  background: rgb(63 111 126 / 64%);
+  box-shadow: 0 0 0 12px rgb(73 128 142 / 20%);
+}
+
+.mock-satellite__road {
+  border-radius: 999px;
+  background: rgb(238 225 188 / 82%);
+  box-shadow: 0 0 0 2px rgb(98 84 61 / 18%);
+}
+
+.mock-satellite__road--main {
+  left: 8%;
+  top: 52%;
+  width: 84%;
+  height: 12px;
+  transform: rotate(9deg);
+}
+
+.mock-satellite__road--side {
+  left: 46%;
+  top: 10%;
+  width: 10px;
+  height: 82%;
+  transform: rotate(21deg);
+}
+
+.mock-satellite__district {
+  border: 1px solid rgb(255 255 255 / 28%);
+  background: rgb(77 92 61 / 35%);
+}
+
+.mock-satellite__district--one {
+  left: 15%;
+  top: 18%;
+  width: 26%;
+  height: 24%;
+  transform: rotate(-8deg);
+}
+
+.mock-satellite__district--two {
+  right: 12%;
+  bottom: 16%;
+  width: 30%;
+  height: 26%;
+  transform: rotate(11deg);
+}
+
+.mock-satellite__marker {
+  transform: translate(-50%, -50%);
+}
+
+.mock-satellite__marker span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 54px;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #9f1f17;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 28%);
+}
+
 .status-badge,
 .source-label {
   display: inline-flex;
@@ -313,6 +582,14 @@ button {
 }
 
 @media (max-width: 860px) {
+  .workbench__intro-header {
+    display: grid;
+  }
+
+  .report-draft-button {
+    width: 100%;
+  }
+
   .workbench__layout {
     grid-template-columns: 1fr;
   }
@@ -320,4 +597,28 @@ button {
   .judgement-summary {
     grid-template-columns: 1fr;
   }
+}
+
+.record-card__location {
+  margin: 8px 0 0 0;
+  padding: 8px;
+  background-color: #fff3cd;
+  border-left: 3px solid #ffc107;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.judgement-card__location {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.judgement-card__safety {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #8a5a00;
 }

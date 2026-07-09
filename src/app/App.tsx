@@ -3,7 +3,11 @@ import messyReports from "../fixtures/phase-0/messy-reports.json";
 import { EmptyState } from "../components/EmptyState";
 import { Phase0RawInfoPanel } from "../features/phase-0/Phase0RawInfoPanel";
 import { Phase0Workbench } from "../features/phase-0/Phase0Workbench";
-import type { Phase0MessyRecord } from "../features/phase-0/phase0-types";
+import type {
+  Phase0MessyRecord,
+  Phase0JudgementDraft,
+} from "../features/phase-0/phase0-types";
+import { createPhase0Judgement } from "../features/phase-0/phase0-heuristics";
 
 type TabKey = "raw" | "workbench";
 
@@ -19,10 +23,23 @@ export function App() {
   const [selectedRecordId, setSelectedRecordId] = useState(
     phase0Records[0]?.id ?? "",
   );
+  const [drafts, setDrafts] = useState<Record<string, Phase0JudgementDraft>>(
+    () => {
+      const initial: Record<string, Phase0JudgementDraft> = {};
+      phase0Records.forEach((record) => {
+        initial[record.id] = createPhase0Judgement(record);
+      });
+      return initial;
+    },
+  );
 
   function selectForWorkbench(recordId: string) {
     setSelectedRecordId(recordId);
     setActiveTab("workbench");
+  }
+
+  function updateDraft(recordId: string, draft: Phase0JudgementDraft) {
+    setDrafts((prev) => ({ ...prev, [recordId]: draft }));
   }
 
   return (
@@ -63,6 +80,8 @@ export function App() {
             records={phase0Records}
             selectedRecordId={selectedRecordId}
             onSelect={setSelectedRecordId}
+            drafts={drafts}
+            onUpdateDraft={updateDraft}
           />
         )}
       </section>

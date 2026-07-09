@@ -23,6 +23,7 @@ export type Phase0MessyRecord = {
   sourceType: string;
   verificationStatus: string;
   updatedAt: string;
+  location?: string;
 };
 
 export type Phase0JudgementDraft = {
@@ -34,4 +35,19 @@ export type Phase0JudgementDraft = {
   suggestedNextStep: Phase0SuggestedNextStep;
   unsafeToActDirectly: boolean;
   humanReviewNote?: string;
+};
+
+export type Phase0ToolNeedSignal = {
+  recordId: string;
+  label: string;
+  rawClue: string;
+  reviewQuestion: string;
+  canPrepareDirectly: false;
+};
+
+export type Phase0PreparationCheckItem = {
+  label: string;
+  relatedRecordIds: string[];
+  status: "has_raw_clue" | "missing_from_raw_info";
+  reviewQuestion: string;
 };

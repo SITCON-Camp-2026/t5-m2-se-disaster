@@ -45,17 +45,47 @@ describe("App", () => {
     expect(screen.getAllByText("未查核").length).toBeGreaterThan(0);
   });
 
-  it("keeps draft CRUD as learner work instead of starter output", () => {
+  it("shows phase 0 workbench with concrete judgements and review notes", () => {
     render(<App />);
 
     fireEvent.click(screen.getByRole("button", { name: "整理工作台" }));
 
+    // Should have at least one record without concrete judgement
     expect(screen.getByText("尚未建立整理草稿")).toBeInTheDocument();
+
+    // Should have complete checklist
+    expect(screen.getByText(/✓ Starter 已載入/)).toBeInTheDocument();
     expect(
-      screen.getByText(/請 agent 加上建立、編輯、刪除或重設整理草稿/),
+      screen.getByText(/✓ 可編輯、刪除或重設整理草稿/),
+    ).toBeInTheDocument();
+
+    // Should show human review notes section
+    expect(screen.getByText(/人類審查備註/)).toBeInTheDocument();
+  });
+
+  it("opens an inline report draft without leaving the workbench", () => {
+    render(<App />);
+
+    fireEvent.click(screen.getByRole("button", { name: "整理工作台" }));
+    fireEvent.click(screen.getByRole("button", { name: "新增報案草稿" }));
+
+    expect(
+      screen.getByRole("button", { name: "收合報案草稿" }),
     ).toBeInTheDocument();
     expect(
-      screen.queryByText(/已產生 \d+ 筆安全邊界草稿/),
-    ).not.toBeInTheDocument();
+      screen.getByRole("region", { name: "報案草稿" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("參考原始資訊")).toBeInTheDocument();
+    expect(screen.getByText(/第一階段完成檢查/)).toBeInTheDocument();
+  });
+
+  it("shows a mock satellite image panel without using a real map", () => {
+    render(<App />);
+
+    fireEvent.click(screen.getByRole("button", { name: "整理工作台" }));
+
+    expect(screen.getByText("非真實影像")).toBeInTheDocument();
+    expect(screen.getByText("衛星影像示意")).toBeInTheDocument();
+    expect(screen.getByText(/它不是地圖、不是真實衛星圖/)).toBeInTheDocument();
   });
 });

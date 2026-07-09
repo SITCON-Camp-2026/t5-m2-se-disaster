@@ -11,11 +11,13 @@ type RecordLike = {
   sourceType: string;
   verificationStatus: string;
   updatedAt: string;
+  location?: string;
 };
 
 export function RecordCard({ record }: { record: RecordLike }) {
   const title = record.title ?? record.name ?? record.id;
   const description = record.rawText ?? record.description;
+  const location = record.location;
   return (
     <article className="record-card">
       <div className="record-card__header">
@@ -23,6 +25,12 @@ export function RecordCard({ record }: { record: RecordLike }) {
         <StatusBadge status={record.verificationStatus} />
       </div>
       {description ? <p>{description}</p> : null}
+      {location && (
+        <p className="record-card__location">
+          <strong>📍 地點：</strong>
+          {location}
+        </p>
+      )}
       <div className="record-card__meta">
         <SourceLabel sourceType={record.sourceType} />
         <span>更新：{formatDateTime(record.updatedAt)}</span>
